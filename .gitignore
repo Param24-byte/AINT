@@ -1,0 +1,32 @@
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+frontend/node_modules/
+frontend/dist/
+
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Large archives / Presentations
+*.zip
+*.pptx
+
+# IDE and OS
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
