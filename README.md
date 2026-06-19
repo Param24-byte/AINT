@@ -78,17 +78,23 @@ If you wish to retrain the LightGBM prediction model on the dataset:
 
 ## 🚀 Cloud Deployment
 
-We have configured the codebase to support seamless deployment using **Render Blueprints** (via the `render.yaml` file in the root).
+We have configured the codebase to support deployment on both **Vercel** and **Render**.
 
-### Deploying with Render (Recommended & Configured)
-Render can build and run both the FastAPI backend and the React frontend static site, automatically linking them:
+### ⚡ Option 1: Deploying with Vercel (Recommended & Free, No Card Required)
+Vercel hosts the frontend static files and the Python backend as Serverless Functions, routing them under the same domain automatically.
 
-1. **Push your code to GitHub** (already completed).
-2. Go to the [Render Dashboard](https://dashboard.render.com/) and sign in.
-3. Click **New +** and select **Blueprint**.
-4. Connect your GitHub repository (`Param24-byte/AINT`).
-5. Render will automatically read the `render.yaml` configuration and set up:
-   * **`atin-backend`** (Python Web Service running FastAPI)
-   * **`atin-frontend`** (Static site hosting React/Vite)
-6. Click **Apply** to start the automatic deployment.
+1. Go to the [Vercel Dashboard](https://vercel.com/) and sign in or create an account.
+2. Click **Add New...** and select **Project**.
+3. Import your GitHub repository (`Param24-byte/AINT`).
+4. Vercel will automatically detect the settings from our root `vercel.json` file.
+5. Click **Deploy**. Vercel will build both the React frontend and the FastAPI serverless backend in under 2 minutes.
+
+### 🌐 Option 2: Deploying with Render
+*Render offers persistent server instances but requires adding a billing card to your account (even for free services).*
+
+1. Go to the [Render Dashboard](https://dashboard.render.com/) and sign in.
+2. Click **New +** and select **Blueprint**.
+3. Connect your GitHub repository (`Param24-byte/AINT`).
+4. Render will automatically read the `render.yaml` configuration.
+5. Click **Apply** to start the automatic deployment.
 
