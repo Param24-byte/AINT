@@ -73,3 +73,22 @@ If you wish to retrain the LightGBM prediction model on the dataset:
    python ml_pipeline.py
    ```
 3. The trained metrics and predictions will be saved directly inside the `backend/model/` directory and loaded by the API.
+
+---
+
+## 🚀 Cloud Deployment
+
+We have configured the codebase to support seamless deployment using **Render Blueprints** (via the `render.yaml` file in the root).
+
+### Deploying with Render (Recommended & Configured)
+Render can build and run both the FastAPI backend and the React frontend static site, automatically linking them:
+
+1. **Push your code to GitHub** (already completed).
+2. Go to the [Render Dashboard](https://dashboard.render.com/) and sign in.
+3. Click **New +** and select **Blueprint**.
+4. Connect your GitHub repository (`Param24-byte/AINT`).
+5. Render will automatically read the `render.yaml` configuration and set up:
+   * **`atin-backend`** (Python Web Service running FastAPI)
+   * **`atin-frontend`** (Static site hosting React/Vite)
+6. Click **Apply** to start the automatic deployment.
+

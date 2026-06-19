@@ -8,7 +8,7 @@ import PriorityZones from './components/PriorityZones'
 import PredictionChart from './components/PredictionChart'
 import './App.css'
 
-const API = 'http://localhost:8000'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 // Bengaluru hotspot data (mirrors backend)
 const ZONES = [

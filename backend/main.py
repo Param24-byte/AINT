@@ -255,7 +255,8 @@ def prediction_timeseries():
 @app.get("/api/model/metrics")
 def model_metrics():
     """Return trained model metrics if available."""
-    meta_path = os.path.join("model", "meta.json")
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    meta_path = os.path.join(base_dir, "model", "meta.json")
     if os.path.exists(meta_path):
         with open(meta_path) as f:
             return json.load(f)
