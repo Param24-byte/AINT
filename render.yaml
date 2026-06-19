@@ -10,10 +10,11 @@ services:
         value: 3.11.5
 
   # 2. React/Vite Frontend Static Site
-  - type: static
+  - type: web
     name: atin-frontend
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/dist
+    staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_URL
         fromService:
