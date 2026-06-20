@@ -9,6 +9,57 @@ ATIN is a city-scale traffic intelligence platform containing 4 key modules:
 
 ---
 
+## 🗺️ System Flow Diagram
+
+The following diagram illustrates how a citizen report flows through the four stages of the ATIN system:
+
+```mermaid
+graph LR
+    classDef startEnd fill:#1A1B26,stroke:#7AA2F7,stroke-width:2px,color:#7AA2F7;
+    classDef process fill:#1F2335,stroke:#414868,stroke-width:1px,color:#A9B1D6;
+    classDef decision fill:#2A2F41,stroke:#F7768E,stroke-width:2px,color:#F7768E;
+    classDef success fill:#1E293B,stroke:#9ECE6A,stroke-width:2px,color:#9ECE6A;
+    classDef storage fill:#1F2335,stroke:#BB9AF7,stroke-width:1px,color:#BB9AF7;
+
+    A[Citizen Photo Capture in ASTraM App]:::startEnd --> B[Upload to /api/evidence/validate]:::process
+    
+    subgraph EAS [Stage 1: Evidence Authenticity Engine]
+        B --> C{Image Quality Check}:::decision
+        C -- Fails: Blur / Low Details --> D[Instant Citizen Feedback / Reject]:::decision
+        C -- Passes: High Edge Complexity --> E[Extract EXIF Metadata]:::process
+        
+        E --> F{GPS & Time Present?}:::decision
+        F -- No --> G[Prompt User for Fallback Location Pin]:::process
+        F -- Yes --> H[Compute Authenticity Score]:::process
+        G --> H
+        
+        H --> I{Score >= 60?}:::decision
+        I -- No --> J[Reject Submission & Show Score Breakdown]:::decision
+        I -- Yes --> K[7-Class Violation Classifier]:::success
+    end
+
+    K --> L[Accepted Report & Generated Signal]:::success
+    
+    subgraph EPE [Stage 2: Enforcement Priority Engine]
+        L --> M[Spatial Aggregation & DBSCAN Clustering]:::process
+        M --> N[Re-rank City Zones by Severity & Urgency]:::process
+    end
+
+    subgraph CPL [Stage 3: Congestion Prediction Layer]
+        N --> O[Spatio-Temporal LightGBM Pipeline]:::process
+        O --> P[Predict Future Demand & Congestion Spillover]:::process
+    end
+
+    subgraph COD [Stage 4: City Operations Dashboard]
+        P --> Q[Plot Live Hotspots on Map]:::process
+        Q --> R[Generate AI Patrol Narratives]:::process
+        R --> S[Expose Smart City APIs]:::storage
+    end
+```
+
+---
+
+
 ## 🛠️ Project Structure
 ```text
 Codebase/
